@@ -1,5 +1,7 @@
 # Ultimate gif app
 
+![App status](https://github.com/mustbefail/ultimate-gif-app/actions/workflows/main.yml/badge.svg)
+
 ## [Demo](https://mustbefail.github.io/ultimate-gif-app/)
 
 ## An application that allows you to view and search gifs using the [GIPHY API](https://developers.giphy.com/docs/api#quick-start-guide)
