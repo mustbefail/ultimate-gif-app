@@ -1,30 +1,31 @@
 name: Build and Deploy
 on:
-  - push
-  - pull_request
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v2
 
       - name: Install
         run: |
-          npm install
+          make install
 
       - name: Run linter
         # Run Linter
         run: |
-          npm run lint
-
+          make lint
       - name: Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
-          npm run build
+          make build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: dist # The folder the action should deploy.
+          github_token: ${{ secrets.ACTION_KEY }}
