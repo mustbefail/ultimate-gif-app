@@ -1,6 +1,7 @@
 # Ultimate gif app
 
-![App status](https://github.com/mustbefail/ultimate-gif-app/actions/workflows/main.yml/badge.svg)
+![Deploy status](https://github.com/mustbefail/ultimate-gif-app/actions/workflows/main.yml/badge.svg)
+[![Linter ans Test](https://github.com/mustbefail/ultimate-gif-app/actions/workflows/dev.yml/badge.svg)](https://github.com/mustbefail/ultimate-gif-app/actions/workflows/dev.yml)
 
 ## [Demo](https://mustbefail.github.io/ultimate-gif-app/)
 
