@@ -29,4 +29,3 @@ The project implements a pre-commit hook that launches staged files linting. If 
 `make build` to build production distribution package
 
 `make deploy` to publish built app
-
