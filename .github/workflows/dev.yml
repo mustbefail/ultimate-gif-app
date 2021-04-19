@@ -1,4 +1,4 @@
-name: Linter ans Test
+name: Dev Linter & Test
 on:
   push:
     branches-ignore:
