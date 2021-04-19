@@ -24,8 +24,5 @@ As a user I can:
 
 `make lint` to lint and prettify your code
 
-The project implements a pre-commit hook that launches staged files linting. If your IDE reports a commit failure then run npm run lint and/or npm run lint:staged and fix reported issues. Note that .eslintrc.js allows console.error and console.warn.
-
 `make build` to build production distribution package
 
-`make deploy` to publish built app
