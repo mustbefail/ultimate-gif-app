@@ -1,7 +1,9 @@
 # Ultimate gif app
 
 ![Deploy status](https://github.com/mustbefail/ultimate-gif-app/actions/workflows/main.yml/badge.svg)
+
 [![Linter and Test](https://github.com/mustbefail/ultimate-gif-app/actions/workflows/dev.yml/badge.svg)](https://github.com/mustbefail/ultimate-gif-app/actions/workflows/dev.yml)
+
 
 ## [Demo](https://mustbefail.github.io/ultimate-gif-app/)
 
@@ -11,11 +13,12 @@ As a user I can:
 
 1. Generate random gif.
 2. Search gifs by name.
-3. Get gifs by category.
-4. Infinite scroll for get more gifs.
-5. Receive list of valid terms that comletes the given tag.
-6. Add to favorites, get link on gif.
-7. Save favorites gif.
+3. Get trending gifs.
+4. Get gifs by category.
+5. Infinite scroll for get more gifs.
+6. Receive list of valid terms that comletes the given tag.
+7. Add to favorites, get link on gif.
+8. Save favorites gif.
 
 ## Development
 
@@ -26,4 +29,3 @@ As a user I can:
 `make lint` to lint and prettify your code
 
 `make build` to build production distribution package
-

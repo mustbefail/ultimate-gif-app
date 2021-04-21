@@ -41,17 +41,12 @@
           }
         }
       ]
-    ]
-  },
-  "pre-commit": "lint:staged",
-  "lint-staged": {
-    "**/*.{js,jsx}": [
-      "eslint --cache --fix"
     ],
-    "**/*.{js,css,md,html}": [
-      "prettier --write"
-    ]
+    "plugins": []
   },
+  "browserslist": [
+    "since 2021-01"
+  ],
   "dependencies": {
     "src": "^1.1.2"
   }
