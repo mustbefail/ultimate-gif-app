@@ -22,6 +22,7 @@
     "@babel/core": "^7.13.14",
     "@babel/eslint-parser": "^7.13.14",
     "@babel/preset-env": "^7.13.12",
+    "@parcel/babel-plugin-transform-runtime": "^2.0.0-nightly.1823",
     "autoprefixer": "^9.8.6",
     "babel-preset-env": "^1.7.0",
     "eslint": "^7.23.0",
@@ -32,26 +33,14 @@
     "prettier": "^2.2.1"
   },
   "babel": {
-    "presets": [
-      [
-        "env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ]
-  },
-  "pre-commit": "lint:staged",
-  "lint-staged": {
-    "**/*.{js,jsx}": [
-      "eslint --cache --fix"
-    ],
-    "**/*.{js,css,md,html}": [
-      "prettier --write"
-    ]
-  },
+  "presets": [
+    "@parcel/babel-preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "@parcel/babel-plugin-transform-runtime"
+  ]
+},
   "dependencies": {
     "src": "^1.1.2"
   }
