@@ -33,10 +33,10 @@
     "prettier": "^2.2.1"
   },
   "babel": {
-  "presets": [
-    "@parcel/babel-preset-env",
-    "@babel/preset-react",
-[
+    "presets": [
+      "@parcel/babel-preset-env",
+      "@babel/preset-react",
+      [
         "env",
         {
           "targets": {
@@ -44,11 +44,11 @@
           }
         }
       ]
-  ],
-  "plugins": [
-    "@parcel/babel-plugin-transform-runtime"
-  ]
-},
+    ],
+    "plugins": [
+      "@parcel/babel-plugin-transform-runtime"
+    ]
+  },
   "dependencies": {
     "src": "^1.1.2"
   }
