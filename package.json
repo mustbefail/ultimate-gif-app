@@ -35,7 +35,15 @@
   "babel": {
   "presets": [
     "@parcel/babel-preset-env",
-    "@babel/preset-react"
+    "@babel/preset-react",
+[
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
   ],
   "plugins": [
     "@parcel/babel-plugin-transform-runtime"

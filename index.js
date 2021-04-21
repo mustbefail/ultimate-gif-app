@@ -80,6 +80,7 @@ function SearchGif() {
 function SearchContent() {
   return `
     <div>
+
     </div>
   `;
 }
