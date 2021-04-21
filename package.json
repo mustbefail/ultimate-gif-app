@@ -22,7 +22,6 @@
     "@babel/core": "^7.13.14",
     "@babel/eslint-parser": "^7.13.14",
     "@babel/preset-env": "^7.13.12",
-    "@parcel/babel-plugin-transform-runtime": "^2.0.0-nightly.1823",
     "autoprefixer": "^9.8.6",
     "babel-preset-env": "^1.7.0",
     "eslint": "^7.23.0",
@@ -34,8 +33,6 @@
   },
   "babel": {
     "presets": [
-      "@parcel/babel-preset-env",
-      "@babel/preset-react",
       [
         "env",
         {
@@ -45,10 +42,11 @@
         }
       ]
     ],
-    "plugins": [
-      "@parcel/babel-plugin-transform-runtime"
-    ]
+    "plugins": []
   },
+  "browserslist": [
+    "since 2021-01"
+  ],
   "dependencies": {
     "src": "^1.1.2"
   }
