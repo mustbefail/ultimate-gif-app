@@ -7,11 +7,13 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      GIHPY_API_KEY: ${{ secrets.GIHPY_API_KEY }}
     steps:
-
       - name: Checkout 🛎️
         uses: actions/checkout@v2
-
+      - name: Check env
+        run: echo "giphy api: $env.GIHPY_API_KEY"
       - name: Install
         # Install deps
         run: |
