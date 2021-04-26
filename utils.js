@@ -1,5 +1,5 @@
 export const getGiphyReqUrl = (action, searchParams = {}) => {
-  const api_key = process.env.GIHPY_API_KEY;
+  const api_key = process.env.GIPHY_API_KEY;
   const baseUrl = 'https://api.giphy.com/v1/gifs/';
   const basePath = `/v1/gifs/${action}`;
   const result = new URL(basePath, baseUrl);
