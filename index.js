@@ -1,6 +1,5 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-
 import { getGiphyReqUrl, transformDataToImgTag } from './utils.js';
 
 window.uGifApp = {
@@ -26,6 +25,15 @@ renderApp();
 
 function renderApp() {
   document.getElementById('app').innerHTML = `${App()}`;
+}
+
+function App() {
+  return `
+    <div class="container">
+    ${Navigation()}
+    ${GifsContainer()}
+    </div>
+    `;
 }
 
 function loadData(action, searchParams) {
