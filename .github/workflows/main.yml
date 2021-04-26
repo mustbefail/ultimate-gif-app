@@ -10,11 +10,24 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      GIHPY_API_KEY: ${{ secrets.GIHPY_API_KEY }}
+    
+    strategy:
+      # Node versions list
+      matrix:
+        node-version: [14.x]
+
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
+        # Check-out repository under GitHub workspace
+        # https://github.com/actions/checkout
+      - uses: actions/checkout@v2
+        # Step's name
+      - name: Use Node.js ${{ matrix.node-version }}
+        # Configures the node version used on GitHub-hosted runners
+        # https://github.com/actions/setup-node
+        uses: actions/setup-node@v1
+        # The Node.js version to configure
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Install
         run: |
@@ -26,11 +39,12 @@ jobs:
           make lint
 
       - name: Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-        env:
-          GIHPY_API_KEY: ${{ secrets.GIHPY_API_KEY }}
+
         run: |
-          env
           make build
+        env:
+          CI: true
+          GIHPY_API_KEY: ${{ secrets.GIHPY_API_KEY }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.1
