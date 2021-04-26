@@ -25,7 +25,7 @@ jobs:
         run: |
           make lint
       - name: Test env
-        run: echo ${{ secrets.GIHPY_API_KEY }}
+        run: echo ${{ process.env }}
       - name: Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
           make build
@@ -36,3 +36,4 @@ jobs:
           branch: gh-pages # The branch the action should deploy to.
           folder: dist # The folder the action should deploy.
           token: ${{ secrets.ACTION_KEY }}
+          GIHPY_API_KEY: ${{ secrets.GIHPY_API_KEY }}
