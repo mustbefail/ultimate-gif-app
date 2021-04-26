@@ -12,8 +12,7 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
-      - name: Check
-        run: echo "giphy api $env.GIHPY_API_KEY"
+
       - name: Install
         # Install deps
         run: |
