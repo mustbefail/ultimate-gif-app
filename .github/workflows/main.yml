@@ -44,7 +44,7 @@ jobs:
           make build
         env:
           CI: true
-          GIHPY_API_KEY: ${{ secrets.GIPHY_API_KEY }}
+          GIPHY_API_KEY: ${{ secrets.GIPHY_API_KEY }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.1
