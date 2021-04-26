@@ -30,8 +30,6 @@
     "parcel-bundler": "^1.12.5",
     "postcss-modules": "^3.2.2",
     "prettier": "^2.2.1",
-    "bootstrap": "^5.0.0-beta3",
-    "poper": "^0.1.1",
     "sass": "^1.32.11"
   },
   "babel": {
@@ -51,6 +49,8 @@
     "since 2021-01"
   ],
   "dependencies": {
+    "bootstrap": "^5.0.0-beta3",
+    "poper": "^0.1.1",
     "src": "^1.1.2"
   }
 }
