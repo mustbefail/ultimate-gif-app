@@ -8,7 +8,7 @@ lint:
 	npx eslint .
 
 prettify:
-	npx prettier --write **/*.{js,css,md,html}
+	npx prettier --write .
 
 build:
 	rm -rf dist/*
