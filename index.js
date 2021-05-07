@@ -30,8 +30,8 @@ function renderApp() {
 function App() {
   return `
     <div class="container">
-    ${Navigation()}
-    ${GifsContainer()}
+      ${Navigation()}
+      ${GifsContainer()}
     </div>
     `;
 }
@@ -102,7 +102,7 @@ function Navigation() {
 
 function SearchGif() {
   return `
-    <form class="d-flex mb-0">
+    <div class="d-flex mb-0">
       <input
         class="form-control me-2"
         type="search"
@@ -116,7 +116,7 @@ function SearchGif() {
       >
       Search
       </button>
-    </form>
+    </div>
     `;
 }
 
