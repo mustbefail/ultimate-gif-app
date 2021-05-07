@@ -6,7 +6,7 @@ export const getGiphyReqUrl = (action, searchParams = {}) => {
   const baseSearchParams = {
     api_key,
     q: '',
-    limit: 25,
+    limit: 65,
     rating: 'g',
     lang: 'en',
   };
@@ -18,17 +18,7 @@ export const getGiphyReqUrl = (action, searchParams = {}) => {
   return `${result}?${newSearchParams}`;
 };
 
-export const transformDataToImgTag = (data) => {
-  if (!Array.isArray(data)) {
-    return makeImgTag(data.image_url);
-  }
-
-  const result = data
-    .map((el) => makeImgTag(el.images.fixed_width.url))
-    .join('');
-  return result;
-};
-
-const makeImgTag = (url) => {
-  return `<img src="${url}" />`;
+export const getUrls = (data) => {
+  if (!Array.isArray(data)) return [data.image_url];
+  return data.map((el) => el.images.fixed_width.url);
 };
