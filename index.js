@@ -1,6 +1,7 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import { getGiphyReqUrl, transformDataToImgTag } from './utils.js';
+import { getGiphyReqUrl, getUrls } from './utils.js';
+import styles from './src/scss/main.scss';
 
 window.uGifApp = {
   cache: {
@@ -64,40 +65,45 @@ function performSearch(action, searchParams) {
 }
 
 function Navigation() {
-  const actions = ['random', 'trending'];
-  const navButtons = actions
-    .map(
-      (action) =>
-        `
-      <li class="nav-item">
-          <a class="nav-link" href="#" data-action="${action}" onclick="window.performSearch(this.dataset.action)">${action}</a>
-      </li>
-      `,
-    )
-    .join('');
   return `
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Ultimate Gif</a>
-    <button
-    class="navbar-toggler"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#navbarTogglerDemo01"
-    aria-controls="navbarTogglerDemo01"
-    aria-expanded="false"
-    aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      ${navButtons}
-      </ul>
-      ${SearchGif()}
-    </div>
-  </div>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Ultimate Gif</a>
+        <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          ${RandomGif()}
+          ${TrendGifs()}
+          </ul>
+          ${SearchGif()}
+        </div>
+      </div>
+    </nav>
   `;
+}
+
+function RandomGif() {
+  return `
+      <li class="nav-item">
+          <a class="nav-link" href="#" data-action="random" onclick="window.performSearch(this.dataset.action)">Random</a>
+      </li>
+      `;
+}
+function TrendGifs() {
+  return `
+      <li class="nav-item">
+          <a class="nav-link" href="#" data-action="trending" onclick="window.performSearch(this.dataset.action)">Trending Gifs</a>
+      </li>
+      `;
 }
 
 function SearchGif() {
@@ -108,7 +114,7 @@ function SearchGif() {
         type="search"
         placeholder="Search"
         aria-label="Search"
-        onchange="window.performSearch(this.type, { q: this.value, limit: 50 })"
+        onchange="window.performSearch(this.type, { q: this.value })"
       >
       <button
         class="btn btn-outline-success"
@@ -120,6 +126,10 @@ function SearchGif() {
     `;
 }
 
+function Gif(url) {
+  return `<img class="m-1" src="${url}" />`;
+}
+
 function GifsContainer() {
   const { state, error } = window.uGifApp.uiState;
   const { gifs } = window.uGifApp.cache;
@@ -127,11 +137,14 @@ function GifsContainer() {
 
   if (state === 'processing') content = 'Loading...';
   if (gifs) {
-    content = transformDataToImgTag(gifs);
+    const urls = getUrls(gifs);
+    content = urls.map(Gif).join('');
   } else if (error) {
     content = error;
   }
-  return `<div class="container bg-light">
+
+  return `
+    <div class="d-flex flex-wrap justify-content-center ${styles.gifContainer}">
     ${content}
     </div>`;
 }
