@@ -2,7 +2,7 @@ install:
 	npm ci
 
 start:
-	npx parcel ./index.html
+	npx parcel ./src/index.html
 
 lint:
 	npx eslint .

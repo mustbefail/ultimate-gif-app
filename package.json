@@ -51,6 +51,7 @@
   "dependencies": {
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^5.0.0-beta3",
+    "js": "^0.1.0",
     "src": "^1.1.2"
   }
 }
