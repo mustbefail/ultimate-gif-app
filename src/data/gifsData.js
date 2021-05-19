@@ -12,18 +12,15 @@ export default function performSearch(action, searchParams) {
   window.renderApp();
 
   loadData(action, searchParams)
-    .then(({ error, data }) => {
-      console.log(data);
+    .then(({ data }) => {
       window.dataStore.uiState.state = 'ready';
 
-      if (error) {
-        window.dataStore.uiState.error = error;
-      } else if (data) {
+      if (data) {
         window.dataStore.cache.gifs = data;
       }
     })
-    .catch(() => {
-      window.dataStore.uiState.error = 'Some error occurred.';
+    .catch((e) => {
+      window.dataStore.uiState.error = `Some error occurred: ${e}`;
     })
     .finally(window.renderApp);
 }

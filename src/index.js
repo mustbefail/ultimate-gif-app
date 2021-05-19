@@ -10,4 +10,4 @@ window.dataStore = dataStore;
 window.renderApp = renderApp;
 window.performSearch = performSearch;
 
-renderApp(App, 'app');
+renderApp(App, document.getElementById('app'));

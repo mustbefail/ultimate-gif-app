@@ -1,5 +1,9 @@
+/** @jsx createElement */
+/** @jsxFrag createFragment */
+import { createElement } from '../../framework/element';
 import Gif from './Gif.js';
-import { getUrls } from '../../data/giphyApi';
+import { getUrls } from '../../data/giphyApi.js';
+import styles from './GifsContainer.scss';
 
 export default function GifsContainer() {
   const { state, error } = window.dataStore.uiState;
@@ -11,13 +15,19 @@ export default function GifsContainer() {
   }
   if (state === 'ready') {
     const urls = getUrls(gifs);
-    content = urls.map(Gif).join('');
+    content = urls.map(Gif);
   } else if (error) {
     content = error;
   }
 
-  return `
-    <div class="d-flex flex-wrap justify-content-center text-light">
-    ${content}
-    </div>`;
+  return (
+    <div
+      className={
+        'd-flex flex-wrap justify-content-start align-content-start text-light ' +
+        styles.gifContainer
+      }
+    >
+      {content}
+    </div>
+  );
 }

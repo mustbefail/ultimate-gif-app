@@ -21,6 +21,8 @@
   "devDependencies": {
     "@babel/core": "^7.13.14",
     "@babel/eslint-parser": "^7.13.14",
+    "@babel/plugin-syntax-jsx": "^7.12.13",
+    "@babel/plugin-transform-react-jsx": "^7.13.12",
     "@babel/preset-env": "^7.13.12",
     "autoprefixer": "^9.8.6",
     "babel-preset-env": "^1.7.0",
@@ -43,7 +45,16 @@
         }
       ]
     ],
-    "plugins": []
+    "plugins": [
+      [
+        "@babel/plugin-transform-react-jsx",
+        {
+          "pragma": "createElement",
+          "pragmaFRag": "createFragment",
+          "throwIfNamespace": "true"
+        }
+      ]
+    ]
   },
   "browserslist": [
     "since 2021-01"
@@ -51,6 +62,7 @@
   "dependencies": {
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^5.0.0-beta3",
+    "framework": "^0.0.0-reborn",
     "js": "^0.1.0",
     "src": "^1.1.2"
   }

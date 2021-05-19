@@ -1,14 +1,17 @@
+/** @jsx createElement */
+/** @jsxFrag createFragment */
+import { createElement, createFragment } from '../../framework/element';
 export default function RandomGif() {
-  return `
-      <li class="nav-item">
-        <a
-            class="nav-link"
-            href="#"
-            data-action="random"
-            onclick="window.performSearch(this.dataset.action)"
-        >
-            Random
-        </a>
-      </li>
-      `;
+  return (
+    <li className={'nav-item'}>
+      <a
+        className={'nav-link'}
+        href="#"
+        data-action="random"
+        onclick={(e) => window.performSearch(e.target.dataset.action)}
+      >
+        Random
+      </a>
+    </li>
+  );
 }

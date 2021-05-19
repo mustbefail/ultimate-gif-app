@@ -1,19 +1,21 @@
+/** @jsx createElement */
+/** @jsxFrag createFragment */
+import { createElement, createFragment } from '../../framework/element';
 export default function SearchGif() {
-  return `
-    <div class="d-flex mb-0">
+  return (
+    <div className={'d-flex mb-0'}>
       <input
-        class="form-control me-2"
+        className={'form-control me-2'}
         type="search"
         placeholder="Search"
         aria-label="Search"
-        onchange="window.performSearch(this.type, { q: this.value })"
-      >
-      <button
-        class="btn btn-outline-success"
-        type="button"
-      >
-      Search
+        onchange={(e) =>
+          window.performSearch(e.target.type, { q: e.target.value })
+        }
+      />
+      <button className={'btn btn-outline-success'} type="button">
+        Search
       </button>
     </div>
-    `;
+  );
 }
