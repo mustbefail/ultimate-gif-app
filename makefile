@@ -12,4 +12,4 @@ prettify:
 
 build:
 	rm -rf dist/*
-	npx parcel build ./index.html --public-url ./
+	npx parcel build ./src/index.html --public-url ./
