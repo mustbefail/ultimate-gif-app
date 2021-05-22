@@ -2,7 +2,7 @@ install:
 	npm ci
 
 start:
-	npx parcel ./index.html
+	npx parcel ./src/index.html
 
 lint:
 	npx eslint .
@@ -12,4 +12,4 @@ prettify:
 
 build:
 	rm -rf dist/*
-	npx parcel build ./index.html --public-url ./
+	npx parcel build ./src/index.html --public-url ./
