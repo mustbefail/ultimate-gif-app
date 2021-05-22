@@ -20,7 +20,6 @@ export default function performSearch(action, searchParams) {
       if (data) {
         dataStore.cache.data = data;
       }
-      console.log(dataStore);
     })
     .catch((e) => {
       dataStore.uiState.error = `Some error occurred: ${e}`;
