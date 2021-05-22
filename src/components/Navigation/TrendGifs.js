@@ -1,6 +1,8 @@
 /** @jsx createElement */
 /** @jsxFrag createFragment */
 import { createElement, createFragment } from '../../framework/element';
+import performSearch from '../../data/gifsData';
+
 export default function TrendGifs() {
   return (
     <li className={'nav-item'}>
@@ -8,7 +10,7 @@ export default function TrendGifs() {
         className={'nav-link'}
         href="#"
         data-action="trending"
-        onclick={(e) => window.performSearch(e.target.dataset.action)}
+        onClick={(e) => performSearch(e.target.dataset.action)}
       >
         Trending Gifs
       </a>

@@ -1,13 +1,20 @@
 const dataStore = {
   cache: {
-    gifs: null,
-  },
-  uiState: {
     /*
      * processing
      * ready
      *
      * */
+    state: null,
+    data: null,
+  },
+  uiState: {
+    /*
+     * trendings
+     * random
+     * search
+     * categories
+     */
     state: null,
     error: null,
   },

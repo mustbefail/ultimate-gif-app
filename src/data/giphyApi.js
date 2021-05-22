@@ -18,7 +18,11 @@ export const getGiphyReqUrl = (action, searchParams = {}) => {
   return `${result}?${newSearchParams}`;
 };
 
-export const getUrls = (data) => {
+export const getImgUrls = (data) => {
   if (!Array.isArray(data)) return [data.image_url];
   return data.map((el) => el.images.fixed_width.url);
+};
+
+export const getCategories = (data) => {
+  return data;
 };

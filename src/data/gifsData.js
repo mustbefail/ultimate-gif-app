@@ -1,4 +1,6 @@
 import { getGiphyReqUrl } from './giphyApi.js';
+import dataStore from '../data/dataStore.js';
+import renderApp from '../framework/render.js';
 
 function loadData(action, searchParams) {
   const url = getGiphyReqUrl(action, searchParams);
@@ -8,19 +10,20 @@ function loadData(action, searchParams) {
 }
 
 export default function performSearch(action, searchParams) {
-  window.dataStore.uiState.state = 'processing';
-  window.renderApp();
+  dataStore.cache.state = 'processing';
+  renderApp();
 
   loadData(action, searchParams)
     .then(({ data }) => {
-      window.dataStore.uiState.state = 'ready';
+      dataStore.cache.state = 'ready';
 
       if (data) {
-        window.dataStore.cache.gifs = data;
+        dataStore.cache.data = data;
       }
+      console.log(dataStore);
     })
     .catch((e) => {
-      window.dataStore.uiState.error = `Some error occurred: ${e}`;
+      dataStore.uiState.error = `Some error occurred: ${e}`;
     })
-    .finally(window.renderApp);
+    .finally(renderApp);
 }

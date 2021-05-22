@@ -1,6 +1,7 @@
 /** @jsx createElement */
 /** @jsxFrag createFragment */
-import { createElement, createFragment } from '../../framework/element';
+import { createElement } from '../../framework/element';
+import performSearch from '../../data/gifsData';
 export default function SearchGif() {
   return (
     <div className={'d-flex mb-0'}>
@@ -9,9 +10,7 @@ export default function SearchGif() {
         type="search"
         placeholder="Search"
         aria-label="Search"
-        onchange={(e) =>
-          window.performSearch(e.target.type, { q: e.target.value })
-        }
+        onChange={(e) => performSearch(e.target.type, { q: e.target.value })}
       />
       <button className={'btn btn-outline-success'} type="button">
         Search

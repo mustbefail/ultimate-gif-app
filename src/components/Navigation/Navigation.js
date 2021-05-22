@@ -4,6 +4,7 @@ import { createElement } from '../../framework/element';
 import RandomGif from './RandomGif.js';
 import TrendGifs from './TrendGifs.js';
 import SearchGif from './SearchGif.js';
+import Categories from './Categories.js';
 
 export default function Navigation() {
   return (
@@ -21,12 +22,13 @@ export default function Navigation() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className={'navbar-toggler-icon'}></span>
+          <span className={'navbar-toggler-icon'} />
         </button>
         <div className={'collapse navbar-collapse'} id="navbarTogglerDemo01">
           <ul className={'navbar-nav me-auto mb-2 mb-lg-0'}>
             <RandomGif />
             <TrendGifs />
+            <Categories />
           </ul>
           <SearchGif />
         </div>

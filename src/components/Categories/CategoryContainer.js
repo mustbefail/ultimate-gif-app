@@ -1,12 +1,10 @@
 /** @jsx createElement */
 /** @jsxFrag createFragment */
 import { createElement } from '../../framework/element';
-import Gif from './Gif.js';
-import { getImgUrls } from '../../data/giphyApi.js';
+import CategoryGif from './CategoryGif';
 import dataStore from '../../data/dataStore';
-import style from './GifsContainer.scss';
 
-export default function GifsContainer() {
+export default function CategoryContainer() {
   const { error } = dataStore.uiState;
   const { state: cacheState, data } = dataStore.cache;
   let content = '';
@@ -15,19 +13,18 @@ export default function GifsContainer() {
     content = 'Loading...';
   }
   if (cacheState === 'ready') {
-    const urls = getImgUrls(data);
-    content = urls.map(Gif);
+    content = data.map(({ name, gif }) => (
+      <CategoryGif name={name} gif={gif} />
+    ));
   } else if (error) {
     content = error;
   }
 
   return (
-    <div className={`d-flex justify-content-center`}>
-      <div
-        className={`d-flex flex-wrap justify-content-start align-content-start text-light ${style.gifContainer}`}
-      >
-        {content}
-      </div>
+    <div
+      className={`d-flex flex-wrap justify-content-center align-content-center text-light`}
+    >
+      {content}
     </div>
   );
 }
