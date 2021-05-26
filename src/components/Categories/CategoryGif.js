@@ -1,6 +1,6 @@
 /** @jsx createElement */
 /** @jsxFrag createFragment */
-import { createElement } from '../../framework/element';
+import { createElement } from '../../framework';
 import style from './CategoryGif.scss';
 
 export default function CategoryGif({ name, gif }) {

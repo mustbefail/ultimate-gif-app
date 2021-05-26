@@ -1,21 +1,11 @@
 /** @jsx createElement */
 /** @jsxFrag createFragment */
-import { createElement } from '../../framework/element';
-import performSearch from '../../data/gifsData';
-import dataStore from '../../data/dataStore';
+import { createElement } from '../../framework';
 
 export default function Categories() {
   return (
     <li className={'nav-item'}>
-      <a
-        className={'nav-link'}
-        href="#"
-        data-action="categories"
-        onClick={({ target }) => {
-          dataStore.uiState.state = target.dataset.action;
-          performSearch(target.dataset.action);
-        }}
-      >
+      <a className={'nav-link'} href="#" data-action="categories">
         Categories
       </a>
     </li>

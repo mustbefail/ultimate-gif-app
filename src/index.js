@@ -1,6 +1,6 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import renderApp from './framework/render.js';
-import App from './components/App.js';
+import { render } from './framework';
+import App from './components/App';
 
-renderApp(App, document.getElementById('app'));
+render(App, document.getElementById('app'));

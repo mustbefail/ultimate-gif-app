@@ -1,9 +1,8 @@
 /** @jsx createElement */
 /** @jsxFrag createFragment */
-import { createElement } from '../../framework/element';
+import { createElement } from '../../framework';
 import RandomGif from './RandomGif.js';
 import TrendGifs from './TrendGifs.js';
-import SearchGif from './SearchGif.js';
 import Categories from './Categories.js';
 
 export default function Navigation() {
@@ -30,7 +29,6 @@ export default function Navigation() {
             <TrendGifs />
             <Categories />
           </ul>
-          <SearchGif />
         </div>
       </div>
     </nav>

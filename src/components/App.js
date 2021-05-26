@@ -1,25 +1,31 @@
 /** @jsx createElement */
 /** @jsxFrag createFragment */
-import { createElement } from '../framework/element';
-import Navigation from './Navigation/Navigation.js';
-import GifsContainer from './Gifs/GifsContainer.js';
-import CategoryContainer from './Categories';
-import dataStore from '../data/dataStore';
+import { createElement, useEffect, useState } from '../framework';
+import Navigation from './Navigation/Navigation';
+import GifsContainer from './Gifs/GifsContainer';
+import SearchGif from './Navigation/SearchGif';
+import { useGif } from '../getGifDataHook';
 
 export default function App() {
-  const { state } = dataStore.uiState;
-  if (state === 'categories') {
-    return (
-      <div className={`container`}>
-        <Navigation />
-        <CategoryContainer />
-      </div>
-    );
-  }
+  const {
+    action,
+    setAction,
+    setSearchParams,
+    error,
+    dataLoading,
+    gifData,
+  } = useGif();
+
   return (
     <div className={`container`}>
       <Navigation />
-      <GifsContainer />
+      <SearchGif onChange={setSearchParams} setAction={setAction} />
+      <GifsContainer
+        action={action}
+        error={error}
+        dataLoading={dataLoading}
+        gifData={gifData}
+      />
     </div>
   );
 }

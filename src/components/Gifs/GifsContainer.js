@@ -1,32 +1,29 @@
 /** @jsx createElement */
 /** @jsxFrag createFragment */
-import { createElement } from '../../framework/element';
-import Gif from './Gif.js';
-import { getImgUrls } from '../../data/giphyApi.js';
-import dataStore from '../../data/dataStore';
+import { createElement } from '../../framework';
+import Gif from './Gif';
 import style from './GifsContainer.scss';
 
-export default function GifsContainer() {
-  const { error } = dataStore.uiState;
-  const { state: cacheState, data } = dataStore.cache;
-  let content = '';
-
-  if (cacheState === 'processing') {
-    content = 'Loading...';
+export default function GifsContainer({ action, error, dataLoading, gifData }) {
+  if (!action) {
+    return;
   }
-  if (cacheState === 'ready') {
-    const urls = getImgUrls(data);
-    content = urls.map(Gif);
-  } else if (error) {
-    content = error;
+  if (error) {
+    return <div className={`text-light`}>{error}</div>;
+  }
+  if (dataLoading) {
+    return <div className={`text-light`}>Loading...</div>;
   }
 
+  const gifs = gifData.map((gifProp) => {
+    return <Gif gifProp={gifProp} />;
+  });
   return (
     <div className={`d-flex justify-content-center`}>
       <div
-        className={`d-flex flex-wrap justify-content-start align-content-start text-light ${style.gifContainer}`}
+        className={`d-flex flex-wrap justify-content-start align-content-start flex-column ${style.gifContainer}`}
       >
-        {content}
+        {gifs}
       </div>
     </div>
   );
