@@ -32,8 +32,10 @@ export const createElement = (tag, props, ...children) => {
           // https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute#example
           if (['disabled', 'checked'].includes(name) && !value) {
             element.removeAttribute(name);
+          } else if (name.toLowerCase() === 'ref') {
+            value.current = element;
           } else if (name.toLowerCase() === 'style') {
-            const styles =
+            element.style =
               typeof value === 'object'
                 ? Object.entries(value)
                     .map(([style, value]) => {
@@ -44,7 +46,6 @@ export const createElement = (tag, props, ...children) => {
                     })
                     .join(';')
                 : value;
-            element.style = styles;
           } else if (name.toLowerCase() === 'classname') {
             const classList =
               typeof value === 'string'

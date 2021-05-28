@@ -14,6 +14,17 @@ export function createFunctionElement(tag, props, children) {
   return tag({ ...props, children }, children);
 }
 
+export function useRef(initialValue) {
+  const { wipComponent, hookIndex } = current;
+  const oldHook = wipComponent.hooks[hookIndex];
+  const ref = { current: initialValue };
+  wipComponent.hooks[hookIndex] = {
+    ref: oldHook ? oldHook.ref : ref,
+  };
+  current.hookIndex++;
+  return ref;
+}
+
 export function useState(initial) {
   const { wipComponent, hookIndex } = current;
   const oldHook = wipComponent.hooks[hookIndex];
