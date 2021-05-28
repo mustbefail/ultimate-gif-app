@@ -6,7 +6,7 @@ export const getGiphyReqUrl = (action, searchParams = {}) => {
   const baseSearchParams = {
     api_key,
     q: '',
-    limit: 25,
+    limit: 36,
     rating: 'g',
     lang: 'en',
   };
@@ -24,7 +24,3 @@ export function loadData(action, searchParams) {
     .then((response) => response.json())
     .then((data) => data);
 }
-
-export const getCategories = (data) => {
-  return data;
-};
