@@ -1,20 +1,10 @@
 /** @jsx createElement */
 /** @jsxFrag createFragment */
 import { createElement, useEffect } from '../../framework';
-import Gif from './Gif';
+import Gif from '../Gif';
 import s from './GifsContainer.scss';
 
-export default function GifsContainer({ action, error, dataLoading, gifData }) {
-  if (!action || !gifData.length) {
-    return;
-  }
-  if (error) {
-    return <div className={`text-light`}>{error}</div>;
-  }
-  if (dataLoading) {
-    return <div className={`text-light`}>Loading...</div>;
-  }
-
+export default function SearchedGifsContainer({ action }) {
   return (
     <div className={`mb-3 ${s['masonry-wrapper']}`}>
       <div className={`${s['masonry']}`}>
