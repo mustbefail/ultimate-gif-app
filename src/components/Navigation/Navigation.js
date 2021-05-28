@@ -1,11 +1,16 @@
 /** @jsx createElement */
 /** @jsxFrag createFragment */
 import { createElement } from '../../framework';
-import RandomGif from './RandomGif.js';
-import TrendGifs from './TrendGifs.js';
-import Categories from './Categories.js';
+import ButtonRandomGif from './ButtonRandomGif.js';
+import ButtonTrendGifs from './ButtonTrendGifs.js';
+import ButtonCategories from './ButtonCategories.js';
 
-export default function Navigation() {
+export default function Navigation({
+  setAction,
+  setRoute,
+  setNewLoad,
+  newLoad,
+}) {
   return (
     <nav className={'navbar navbar-expand-lg navbar-light bg-light mb-3'}>
       <div className={'container-fluid'}>
@@ -25,9 +30,14 @@ export default function Navigation() {
         </button>
         <div className={'collapse navbar-collapse'} id="navbarTogglerDemo01">
           <ul className={'navbar-nav me-auto mb-2 mb-lg-0'}>
-            <RandomGif />
-            <TrendGifs />
-            <Categories />
+            <ButtonRandomGif
+              setAction={setAction}
+              setRoute={setRoute}
+              setNewLoad={setNewLoad}
+              newLoad={newLoad}
+            />
+            <ButtonTrendGifs setAction={setAction} setRoute={setRoute} />
+            <ButtonCategories setAction={setAction} setRoute={setRoute} />
           </ul>
         </div>
       </div>
