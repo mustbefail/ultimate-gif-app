@@ -17,12 +17,14 @@ export function createFunctionElement(tag, props, children) {
 export function useRef(initialValue) {
   const { wipComponent, hookIndex } = current;
   const oldHook = wipComponent.hooks[hookIndex];
-  const ref = { current: initialValue };
-  wipComponent.hooks[hookIndex] = {
-    ref: oldHook ? oldHook.ref : ref,
+  const hook = {
+    current: oldHook ? oldHook.current : initialValue,
   };
+
+  wipComponent.hooks[hookIndex] = hook;
+
   current.hookIndex++;
-  return ref;
+  return hook;
 }
 
 export function useState(initial) {
