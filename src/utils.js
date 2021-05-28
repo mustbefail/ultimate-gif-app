@@ -16,3 +16,15 @@ export const getRandomElement = (array) => {
 
   return array[randomIndex];
 };
+
+export const debounce = (fn, delay) => {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
+};
+
+export const backgrounds = ['#eb4d4b', '#6ab04c', '#f0932b', '#f9ca24'];
