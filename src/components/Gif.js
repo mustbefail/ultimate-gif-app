@@ -1,11 +1,10 @@
 /** @jsx createElement */
 /** @jsxFrag createFragment */
-import { createElement, useEffect } from '../../framework';
-import { getRandomElement } from '../../utils';
-import s from './GifsContainer.scss';
+import { createElement, useEffect } from '../framework';
+import { backgrounds, getRandomElement } from '../utils';
+import s from './Gifs/GifsContainer.scss';
 
-export default function SearchedGif({ title, height, width, url }) {
-  const backgrounds = ['#eb4d4b', '#6ab04c', '#f0932b', '#f9ca24'];
+export default function Gif({ title, height, width, url }) {
   const gifContainerStyles = {
     height,
     width,
