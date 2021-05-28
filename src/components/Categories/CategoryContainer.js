@@ -6,6 +6,8 @@ export default function CategoryContainer() {
   return (
     <div
       className={`d-flex flex-wrap justify-content-center align-content-center text-light`}
-    ></div>
+    >
+      <h1>Categories</h1>
+    </div>
   );
 }
