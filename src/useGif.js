@@ -18,12 +18,12 @@ export const useGif = () => {
           if (data.message) throw Error(data.message);
           setDataLoading(true);
           setError(null);
-          setGifData(gifData);
+          setGifData(Array.isArray(gifData) ? gifData : [gifData]);
         })
         .catch(setError)
         .finally(() => setDataLoading(false));
     }
-  }, [searchParams]);
+  }, [searchParams, action]);
 
   return {
     action,
