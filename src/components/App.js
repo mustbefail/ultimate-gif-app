@@ -13,6 +13,7 @@ export default function App() {
   const [route, setRoute] = useState('trending');
   const [action, setAction] = useState('');
   const [newLoad, setNewLoad] = useState(null);
+  const [searchParams, setSearchParams] = useState({});
 
   let content;
   switch (route) {
@@ -23,10 +24,12 @@ export default function App() {
       content = <CategoryContainer />;
       break;
     case 'search':
-      content = <SearchedGifsContainer action={action} />;
+      content = (
+        <SearchedGifsContainer action={action} searchParams={searchParams} />
+      );
       break;
     case 'trending':
-      content = <Trends action={action} test={test} setTest={setTest} />;
+      content = <Trends action={action} />;
       break;
     default:
       content = <Trends />;
@@ -41,7 +44,11 @@ export default function App() {
         setNewLoad={setNewLoad}
         newLoad={newLoad}
       />
-      <SearchGif setRoute={setRoute} setAction={setAction} />
+      <SearchGif
+        setRoute={setRoute}
+        setAction={setAction}
+        setSearchParam={setSearchParams}
+      />
 
       {content}
       <Footer />

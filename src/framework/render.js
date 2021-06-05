@@ -1,8 +1,10 @@
 /** @jsx createElement */
+
 /*** @jsxFrag createFragment */
 
 import { createElement } from './element';
 import { current } from './hooks';
+import { isFunction } from '../utils';
 
 /**
  * Renders a component and attaches it to the target DOM element

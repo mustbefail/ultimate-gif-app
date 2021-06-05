@@ -33,6 +33,7 @@ export const createElement = (tag, props, ...children) => {
           if (['disabled', 'checked'].includes(name) && !value) {
             element.removeAttribute(name);
           } else if (name.toLowerCase() === 'ref') {
+            console.log(element);
             value.current = element;
           } else if (name.toLowerCase() === 'style') {
             element.style =

@@ -1,10 +1,7 @@
 import { useState, useEffect } from './framework';
 import { loadData } from './data/giphyApi';
 
-export const useGif = () => {
-  const [action, setAction] = useState('');
-  const [searchParams, setSearchParams] = useState({});
-
+export const useGif = (action, searchParams) => {
   const [error, setError] = useState(null);
   const [dataLoading, setDataLoading] = useState(false);
   const [gifData, setGifData] = useState([]);
@@ -26,10 +23,6 @@ export const useGif = () => {
   }, [searchParams, action]);
 
   return {
-    action,
-    setAction,
-    searchParams,
-    setSearchParams,
     error,
     dataLoading,
     gifData,
