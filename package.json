@@ -49,8 +49,6 @@
       [
         "@babel/plugin-transform-react-jsx",
         {
-          "pragma": "createElement",
-          "pragmaFRag": "createFragment",
           "throwIfNamespace": "true"
         }
       ]
@@ -64,6 +62,7 @@
     "bootstrap": "^5.0.0-beta3",
     "framework": "^0.0.0-reborn",
     "js": "^0.1.0",
+    "node-sass": "^6.0.0",
     "src": "^1.1.2"
   }
 }

@@ -5,13 +5,16 @@
  * @param {Node[]} children - child elements
  * @returns {DocumentFragment|Element}
  */
+import { createFunctionElement } from './hooks';
+import { isFunction, kebabize } from '../utils';
+
 export const createElement = (tag, props, ...children) => {
-  if (typeof tag === 'function') {
+  if (isFunction(tag)) {
     /*
       Passing children as the 2nd argument is required as jsx transformer puts component functions
       and regular tags in wrapper functions that expect children as the 2nd param
      */
-    return tag({ ...props, children }, children);
+    return createFunctionElement(tag, props, children);
   }
   const element =
     tag === '' ? new DocumentFragment() : document.createElement(tag);
@@ -29,6 +32,21 @@ export const createElement = (tag, props, ...children) => {
           // https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute#example
           if (['disabled', 'checked'].includes(name) && !value) {
             element.removeAttribute(name);
+          } else if (name.toLowerCase() === 'ref') {
+            console.log(element);
+            value.current = element;
+          } else if (name.toLowerCase() === 'style') {
+            element.style =
+              typeof value === 'object'
+                ? Object.entries(value)
+                    .map(([style, value]) => {
+                      const kebabName = kebabize(style);
+                      return Number(value)
+                        ? `${kebabName}:${value}px`
+                        : `${kebabName}:${value}`;
+                    })
+                    .join(';')
+                : value;
           } else if (name.toLowerCase() === 'classname') {
             const classList =
               typeof value === 'string'

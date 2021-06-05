@@ -6,7 +6,7 @@ export const getGiphyReqUrl = (action, searchParams = {}) => {
   const baseSearchParams = {
     api_key,
     q: '',
-    limit: 65,
+    limit: 36,
     rating: 'g',
     lang: 'en',
   };
@@ -18,11 +18,9 @@ export const getGiphyReqUrl = (action, searchParams = {}) => {
   return `${result}?${newSearchParams}`;
 };
 
-export const getImgUrls = (data) => {
-  if (!Array.isArray(data)) return [data.image_url];
-  return data.map((el) => el.images.fixed_width.url);
-};
-
-export const getCategories = (data) => {
-  return data;
-};
+export function loadData(action, searchParams) {
+  const url = getGiphyReqUrl(action, searchParams);
+  return fetch(url)
+    .then((response) => response.json())
+    .then((data) => data);
+}
