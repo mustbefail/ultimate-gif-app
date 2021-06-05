@@ -1,6 +1,4 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement } from '../../framework';
+import React from 'react';
 
 export default function ButtonCategories({ setAction, setRoute }) {
   return (

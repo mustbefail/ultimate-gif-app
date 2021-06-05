@@ -1,6 +1,4 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement, useEffect, useState } from '../framework';
+import React, { useEffect, useState } from 'react';
 import { loadData } from '../data/giphyApi';
 import Gif from './Gif';
 

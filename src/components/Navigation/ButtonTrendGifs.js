@@ -1,7 +1,4 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement, createFragment } from '../../framework';
-
+import React from 'react';
 export default function ButtonTrendGifs({ setAction, setRoute }) {
   return (
     <li className={'nav-item'}>

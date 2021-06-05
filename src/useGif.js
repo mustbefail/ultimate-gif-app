@@ -1,4 +1,4 @@
-import { useState, useEffect } from './framework';
+import { useState, useEffect } from 'react';
 import { loadData } from './data/giphyApi';
 
 export const useGif = (action, searchParams) => {

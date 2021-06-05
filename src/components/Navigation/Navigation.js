@@ -1,6 +1,5 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement } from '../../framework';
+import React from 'react';
+
 import ButtonRandomGif from './ButtonRandomGif.js';
 import ButtonTrendGifs from './ButtonTrendGifs.js';
 import ButtonCategories from './ButtonCategories.js';

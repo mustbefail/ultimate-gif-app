@@ -1,6 +1,4 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement, useRef } from '../framework';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function SearchGif({ setRoute, setAction, setSearchParam }) {
   const inputRef = useRef(null);

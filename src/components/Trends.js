@@ -1,6 +1,5 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement, useEffect, useState } from '../framework';
+import React, { useState, useEffect } from 'react';
+
 import { loadData } from '../data/giphyApi';
 import s from './Gifs/GifsContainer.scss';
 import Gif from './Gif';
@@ -25,8 +24,6 @@ export default function Trends({ action }) {
         .finally(() => setDataLoading(false));
     }
   }, [action]);
-
-  if (!gifData.length) return;
 
   if (error) {
     return <div>error</div>;

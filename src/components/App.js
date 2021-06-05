@@ -1,6 +1,5 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement, useEffect, useState } from '../framework';
+import React from 'react';
+import { useState, useEffect } from 'react';
 import Navigation from './Navigation/Navigation';
 import SearchedGifsContainer from './Gifs/SearchedGifsContainer';
 import CategoryContainer from './Categories';
