@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { loadData } from './data/giphyApi';
 
-export const useGif = (action, searchParams) => {
+export const useGif = (action, searchParams = {}) => {
   const [error, setError] = useState(null);
   const [dataLoading, setDataLoading] = useState(false);
   const [gifData, setGifData] = useState([]);

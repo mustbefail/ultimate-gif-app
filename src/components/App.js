@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Navigation from './Navigation/Navigation';
-import SearchedGifsContainer from './Gifs/SearchedGifsContainer';
+import SearchedGifsContainer from './SearchedGifsContainer';
 import CategoryContainer from './Categories';
 import SearchGif from './SearchGif';
 import Footer from './Footer';
@@ -10,7 +10,7 @@ import RandomGif from './RandomGif';
 
 export default function App() {
   const [route, setRoute] = useState('trending');
-  const [action, setAction] = useState('');
+  const [action, setAction] = useState('trending');
   const [newLoad, setNewLoad] = useState(null);
   const [searchParams, setSearchParams] = useState({});
 

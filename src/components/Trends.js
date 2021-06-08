@@ -1,29 +1,51 @@
 import React, { useState, useEffect } from 'react';
 
+import MasonryLayout from './MasonryLayout/MasonryLayout';
+import GifList from './GifList';
 import { loadData } from '../data/giphyApi';
-import s from './Gifs/GifsContainer.scss';
-import Gif from './Gif';
+import MasonryItem from './MasonryLayout/MasonryItem';
 
 export default function Trends({ action }) {
   const [error, setError] = useState(null);
   const [dataLoading, setDataLoading] = useState(false);
   const [gifData, setGifData] = useState([]);
+  const [isBottom, setIsBottom] = useState(false);
+
+  const handleScroll = () => {
+    const scrollTop =
+      (document.documentElement && document.documentElement.scrollTop) ||
+      document.body.scrollTop;
+    const scrollHeight =
+      (document.documentElement && document.documentElement.scrollHeight) ||
+      document.body.scrollHeight;
+    if (scrollTop + window.innerHeight + 50 >= scrollHeight) {
+      setIsBottom(true);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     if (action) {
-      loadData(action)
+      loadData(action, isBottom ? { offset: 36 } : {})
         .then((data) => {
           const { data: gifData } = data;
 
           if (data.message) throw Error(data.message);
           setDataLoading(true);
           setError(null);
-          setGifData(Array.isArray(gifData) ? gifData : [gifData]);
+          setGifData((prevState) => [...prevState, ...gifData]);
         })
         .catch(setError)
-        .finally(() => setDataLoading(false));
+        .finally(() => {
+          setDataLoading(false);
+          setIsBottom(false);
+        });
     }
-  }, [action]);
+  }, [action, isBottom]);
 
   if (error) {
     return <div>error</div>;
@@ -31,17 +53,10 @@ export default function Trends({ action }) {
   if (dataLoading) {
     return <div>Loading...</div>;
   }
-  return (
-    <div className={`mb-3 ${s['masonry-wrapper']}`}>
-      <div className={`${s['masonry']}`}>
-        {gifData.map((gif) => {
-          const { images, title } = gif;
-          const { fixed_width: smallImg } = images;
-          const { url, height, width } = smallImg;
 
-          return <Gif height={height} width={width} url={url} title={title} />;
-        })}
-      </div>
-    </div>
+  return (
+    <MasonryLayout>
+      <GifList gifData={gifData} />
+    </MasonryLayout>
   );
 }

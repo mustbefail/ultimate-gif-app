@@ -22,5 +22,8 @@ export function loadData(action, searchParams) {
   const url = getGiphyReqUrl(action, searchParams);
   return fetch(url)
     .then((response) => response.json())
-    .then((data) => data);
+    .then((data) => data)
+    .catch((e) => {
+      console.log(e);
+    });
 }
