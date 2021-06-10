@@ -1,62 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
-import MasonryLayout from './MasonryLayout/MasonryLayout';
 import GifList from './GifList';
-import { loadData } from '../data/giphyApi';
-import MasonryItem from './MasonryLayout/MasonryItem';
 
-export default function Trends({ action }) {
-  const [error, setError] = useState(null);
-  const [dataLoading, setDataLoading] = useState(false);
-  const [gifData, setGifData] = useState([]);
-  const [isBottom, setIsBottom] = useState(false);
+import useApi from '../Hooks/useApi';
+import MasonryLayout from './MasonryLayout/MasonryLayout';
+import { getGiphyReqUrl } from '../data/giphyApi';
 
-  const handleScroll = () => {
-    const scrollTop =
-      (document.documentElement && document.documentElement.scrollTop) ||
-      document.body.scrollTop;
-    const scrollHeight =
-      (document.documentElement && document.documentElement.scrollHeight) ||
-      document.body.scrollHeight;
-    if (scrollTop + window.innerHeight + 50 >= scrollHeight) {
-      setIsBottom(true);
-    }
-  };
+export default function Trends({ apiEndpoint }) {
+  const gifPerPage = 25;
+
+  const [{ data, error, loading, currPage, lastPage }, fetchGifs] = useApi();
+
+  const apiUrl = (offset) => getGiphyReqUrl(apiEndpoint, { offset });
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    fetchGifs(apiUrl(0));
   }, []);
 
-  useEffect(() => {
-    if (action) {
-      loadData(action, isBottom ? { offset: 36 } : {})
-        .then((data) => {
-          const { data: gifData } = data;
-
-          if (data.message) throw Error(data.message);
-          setDataLoading(true);
-          setError(null);
-          setGifData((prevState) => [...prevState, ...gifData]);
-        })
-        .catch(setError)
-        .finally(() => {
-          setDataLoading(false);
-          setIsBottom(false);
-        });
-    }
-  }, [action, isBottom]);
-
-  if (error) {
-    return <div>error</div>;
-  }
-  if (dataLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <MasonryLayout>
-      <GifList gifData={gifData} />
-    </MasonryLayout>
+    <InfiniteScroll
+      next={() => fetchGifs(apiUrl(currPage * gifPerPage), true)}
+      hasMore={!lastPage && !loading}
+      loader={`Loading...`}
+      dataLength={data.length}
+      scrollThreshold={1}
+    >
+      {error ? (
+        <div className={`text-light text-center`}>{error} </div>
+      ) : (
+        <MasonryLayout>
+          <GifList gifData={data} />
+        </MasonryLayout>
+      )}
+    </InfiniteScroll>
   );
 }

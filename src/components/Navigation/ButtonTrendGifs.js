@@ -1,5 +1,5 @@
 import React from 'react';
-export default function ButtonTrendGifs({ setAction, setRoute }) {
+export default function ButtonTrendGifs({ setApiEndpoint }) {
   return (
     <li className={'nav-item'}>
       <a
@@ -8,8 +8,7 @@ export default function ButtonTrendGifs({ setAction, setRoute }) {
         data-action="trending"
         onClick={({ target }) => {
           const { dataset } = target;
-          setAction(dataset.action);
-          setRoute(dataset.action);
+          setApiEndpoint(dataset.action);
         }}
       >
         Trending Gifs

@@ -1,7 +1,6 @@
 import React from 'react';
 export default function ButtonRandomGif({
-  setAction,
-  setRoute,
+  setApiEndpoint,
   setNewLoad,
   newLoad,
 }) {
@@ -13,8 +12,7 @@ export default function ButtonRandomGif({
         data-action="random"
         onClick={({ target }) => {
           const { dataset } = target;
-          setAction(dataset.action);
-          setRoute(dataset.action);
+          setApiEndpoint(dataset.action);
           setNewLoad(!newLoad);
         }}
       >

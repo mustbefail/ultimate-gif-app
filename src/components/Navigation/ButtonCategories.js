@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ButtonCategories({ setAction, setRoute }) {
+export default function ButtonCategories({ setApiEndpoint }) {
   return (
     <li className={'nav-item'}>
       <a
@@ -9,8 +9,7 @@ export default function ButtonCategories({ setAction, setRoute }) {
         data-action="categories"
         onClick={({ target }) => {
           const { dataset } = target;
-          setAction(dataset.action);
-          setRoute(dataset.action);
+          setApiEndpoint(dataset.action);
         }}
       >
         Categories

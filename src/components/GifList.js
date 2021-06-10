@@ -1,6 +1,5 @@
 import Gif from './Gif';
 import React from 'react';
-import MasonryItem from './MasonryLayout/MasonryItem';
 
 export default function GifList({ gifData }) {
   return gifData.map((gif) => {
@@ -9,9 +8,7 @@ export default function GifList({ gifData }) {
     const { url, height, width } = smallImg;
 
     return (
-      <MasonryItem height={height} width={width} key={id}>
-        <Gif height={height} width={width} url={url} title={title} />
-      </MasonryItem>
+      <Gif height={height} width={width} url={url} title={title} key={id} />
     );
   });
 }
