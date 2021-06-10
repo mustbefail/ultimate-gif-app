@@ -1,6 +1,5 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement } from '../../framework';
+import React from 'react';
+
 import style from './CategoryGif.scss';
 
 export default function CategoryGif({ name, gif }) {

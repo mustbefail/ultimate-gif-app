@@ -1,21 +1,15 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement, useEffect } from '../framework';
+import React from 'react';
 import { backgrounds, getRandomElement } from '../utils';
-import s from './Gifs/GifsContainer.scss';
 
-export default function Gif({ title, height, width, url }) {
-  const gifContainerStyles = {
+export default function Gif({ title, url, height, width }) {
+  const gifStyle = {
     height,
     width,
+    borderRadius: 5,
     backgroundColor: getRandomElement(backgrounds),
   };
-
   return (
-    <div
-      style={gifContainerStyles}
-      className={`m-2 rounded ${s['masonry-item']}`}
-    >
+    <div style={gifStyle}>
       <img src={url} alt={title} className={'rounded'} />
     </div>
   );

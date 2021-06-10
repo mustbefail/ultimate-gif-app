@@ -1,6 +1,4 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement, useEffect, useState } from '../framework';
+import React from 'react';
 
 export default function Footer() {
   return (

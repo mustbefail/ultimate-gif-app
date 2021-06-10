@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-
 import GifList from './GifList';
-
-import useApi from '../Hooks/useApi';
+import { getGiphyReqUrl, loadData } from '../data/giphyApi';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import MasonryLayout from './MasonryLayout/MasonryLayout';
-import { getGiphyReqUrl } from '../data/giphyApi';
+import useApi from '../Hooks/useApi';
 
-export default function Trends({ apiEndpoint }) {
+export default function SearchedGifsContainer({ apiEndpoint, debouncedQuery }) {
   const gifPerPage = 25;
 
   const [{ data, error, loading, currPage, lastPage }, fetchGifs] = useApi();
 
-  const apiUrl = (offset) => getGiphyReqUrl(apiEndpoint, { offset });
-
+  const apiUrl = (offset) =>
+    getGiphyReqUrl(apiEndpoint, {
+      offset,
+      q: debouncedQuery,
+      limit: gifPerPage,
+    });
   useEffect(() => {
     fetchGifs(apiUrl(0));
-  }, []);
-
+  }, [debouncedQuery]);
   return (
     <InfiniteScroll
       next={() => fetchGifs(apiUrl(currPage * gifPerPage), true)}
@@ -25,6 +26,11 @@ export default function Trends({ apiEndpoint }) {
       loader={`Loading...`}
       dataLength={data.length}
       scrollThreshold={1}
+      endMessage={
+        <p style={{ textAlign: 'center' }}>
+          <b>Yay! You have seen it all</b>
+        </p>
+      }
     >
       {error ? (
         <div className={`text-light text-center`}>{error} </div>

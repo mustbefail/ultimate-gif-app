@@ -1,6 +1,8 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import { render } from './framework';
+import ReactDOM from 'react-dom';
+import React from 'react';
+
 import App from './components/App';
 
-render(App, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
