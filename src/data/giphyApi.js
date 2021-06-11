@@ -22,5 +22,5 @@ export async function loadRandomGif(endPoint, searchParams) {
   const url = getGiphyReqUrl(endPoint, searchParams);
   return fetch(url)
     .then((response) => response.json())
-    .catch((e) => console.log(e));
+    .catch(Error);
 }
