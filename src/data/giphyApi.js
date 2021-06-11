@@ -18,13 +18,9 @@ export const getGiphyReqUrl = (apiEndpoint, searchParams = {}) => {
   return `${result}?${newSearchParams}`;
 };
 
-export async function loadData(action, searchParams) {
-  const url = getGiphyReqUrl(action, searchParams);
-  try {
-    const response = await fetch(url);
-    const json = await response.json();
-    return json;
-  } catch (e) {
-    throw Error(e);
-  }
+export async function loadRandomGif(endPoint, searchParams) {
+  const url = getGiphyReqUrl(endPoint, searchParams);
+  return fetch(url)
+    .then((response) => response.json())
+    .catch(Error);
 }

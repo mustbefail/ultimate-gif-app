@@ -13,13 +13,13 @@ import useDebounce from '../Hooks/useDebounce';
 export default function App() {
   const [newLoad, setNewLoad] = useState(null);
   const [apiEndpoint, setApiEndpoint] = useState('trending');
-  const { query, handleSubmit, handleInput } = useSearchForm();
+  const { query, handleInput } = useSearchForm();
   const debouncedQuery = useDebounce(query, 500);
 
   let content;
   switch (apiEndpoint) {
     case 'random':
-      content = <RandomGif newLoad={newLoad} />;
+      content = <RandomGif apiEndpoint={apiEndpoint} />;
       break;
     case 'categories':
       content = <CategoryContainer />;
@@ -47,7 +47,6 @@ export default function App() {
         />
         <SearchGif
           value={query}
-          onSubmit={handleSubmit}
           setValue={handleInput}
           setApiEndpoint={setApiEndpoint}
         />
