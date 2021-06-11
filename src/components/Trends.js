@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import GifList from './GifList';
@@ -26,11 +26,13 @@ export default function Trends({ apiEndpoint }) {
       dataLength={data.length}
       scrollThreshold={1}
     >
-      {error ? (
-        <div className={`text-light text-center`}>{error} </div>
+      {error && !loading ? (
+        <div className={`text-light text-center`}>
+          <h3>Some error</h3>
+        </div>
       ) : (
         <MasonryLayout>
-          <GifList gifData={data} />
+          <GifList gifData={data} isLoading={loading} />
         </MasonryLayout>
       )}
     </InfiniteScroll>

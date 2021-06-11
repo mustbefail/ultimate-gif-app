@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import GifList from './GifList';
-import { getGiphyReqUrl, loadData } from '../data/giphyApi';
+import { getGiphyReqUrl } from '../data/giphyApi';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MasonryLayout from './MasonryLayout/MasonryLayout';
 import useApi from '../Hooks/useApi';
