@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import Navigation from './Navigation/Navigation';
+import Navigation from './Navigation';
 import SearchedGifsContainer from './SearchedGifsContainer';
 import CategoryContainer from './Categories';
 import SearchGif from './SearchGif';
