@@ -4,8 +4,13 @@ import { getGiphyReqUrl } from '../data/giphyApi';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MasonryLayout from './MasonryLayout/MasonryLayout';
 import useApi from '../Hooks/useApi';
+import Spinner from './Spinner';
 
-export default function SearchedGifsContainer({ apiEndpoint, debouncedQuery }) {
+export default function SearchedGifsContainer({
+  apiEndpoint,
+  debouncedQuery,
+  setApiEndpoint,
+}) {
   const gifPerPage = 25;
 
   const [{ data, error, loading, currPage, lastPage }, fetchGifs] = useApi();
@@ -23,7 +28,7 @@ export default function SearchedGifsContainer({ apiEndpoint, debouncedQuery }) {
     <InfiniteScroll
       next={() => fetchGifs(apiUrl(currPage * gifPerPage), true)}
       hasMore={!lastPage && !loading}
-      loader={`Loading...`}
+      loader={<Spinner />}
       dataLength={data.length}
       scrollThreshold={1}
       endMessage={
@@ -36,7 +41,7 @@ export default function SearchedGifsContainer({ apiEndpoint, debouncedQuery }) {
         <div className={`text-light text-center`}>{error} </div>
       ) : (
         <MasonryLayout>
-          <GifList gifData={data} />
+          <GifList gifData={data} setApiEndpoint={setApiEndpoint} />
         </MasonryLayout>
       )}
     </InfiniteScroll>

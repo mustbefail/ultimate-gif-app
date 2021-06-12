@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import style from './CategoryGif.scss';
 
-export default function CategoryGif({ name, gif }) {
-  const { url: gifUrl } = gif.images.fixed_width;
+export default function CategoryGif({
+  name,
+  encodeName,
+  gifUrl,
+  setSubCat,
+  setSearch,
+  isSubCat,
+  setIsSubCat,
+  setApiEndpoint,
+}) {
+  const handleLink = (e) => {
+    e.preventDefault();
+    if (isSubCat) {
+      setIsSubCat(false);
+      setSearch(name);
+      setApiEndpoint('search');
+      return;
+    }
+    setIsSubCat(true);
+    setSubCat(encodeName);
+  };
   return (
-    <a href="#">
+    <a onClick={handleLink}>
       <div className={`m-1 card bg-dark text-white ${style.gifContainer}`}>
         <img src={gifUrl} className={'card-img'} alt={name} />
         <div
