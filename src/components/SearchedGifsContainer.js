@@ -5,7 +5,11 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import MasonryLayout from './MasonryLayout/MasonryLayout';
 import useApi from '../Hooks/useApi';
 
-export default function SearchedGifsContainer({ apiEndpoint, debouncedQuery }) {
+export default function SearchedGifsContainer({
+  apiEndpoint,
+  debouncedQuery,
+  setApiEndpoint,
+}) {
   const gifPerPage = 25;
 
   const [{ data, error, loading, currPage, lastPage }, fetchGifs] = useApi();
@@ -36,7 +40,7 @@ export default function SearchedGifsContainer({ apiEndpoint, debouncedQuery }) {
         <div className={`text-light text-center`}>{error} </div>
       ) : (
         <MasonryLayout>
-          <GifList gifData={data} />
+          <GifList gifData={data} setApiEndpoint={setApiEndpoint} />
         </MasonryLayout>
       )}
     </InfiniteScroll>

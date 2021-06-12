@@ -11,14 +11,14 @@ export default function RandomGif({ apiEndpoint }) {
 
   useEffect(() => {
     loadRandomGif(apiEndpoint)
-      .then((data) => {
+      .then(({ data }) => {
         setIsLoading(true);
         const {
           image_url: url,
           image_height: height,
           image_width: width,
           title,
-        } = data.data;
+        } = data;
 
         setGifData({ url, height, width, title });
       })
@@ -37,7 +37,7 @@ export default function RandomGif({ apiEndpoint }) {
         className={`btn btn-outline-success p-2 mt-2`}
         onClick={() => setLoadNew(!loadNew)}
       >
-        New Random
+        NEXT
       </button>
     </div>
   );

@@ -7,7 +7,11 @@ import useApi from '../Hooks/useApi';
 import MasonryLayout from './MasonryLayout/MasonryLayout';
 import { getGiphyReqUrl } from '../data/giphyApi';
 
-export default function Trends({ apiEndpoint }) {
+export default function Trends({
+  apiEndpoint,
+  setApiEndpoint,
+  setSingleGifID,
+}) {
   const gifPerPage = 25;
 
   const [{ data, error, loading, currPage, lastPage }, fetchGifs] = useApi();
@@ -32,7 +36,12 @@ export default function Trends({ apiEndpoint }) {
         </div>
       ) : (
         <MasonryLayout>
-          <GifList gifData={data} isLoading={loading} />
+          <GifList
+            gifData={data}
+            isLoading={loading}
+            setApiEndpoint={setApiEndpoint}
+            setSingleGifID={setSingleGifID}
+          />
         </MasonryLayout>
       )}
     </InfiniteScroll>

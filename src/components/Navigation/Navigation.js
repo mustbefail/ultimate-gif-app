@@ -4,13 +4,14 @@ import ButtonRandomGif from './ButtonRandomGif.js';
 import ButtonTrendGifs from './ButtonTrendGifs.js';
 import ButtonCategories from './ButtonCategories.js';
 
-export default function Navigation({ setApiEndpoint, setNewLoad, newLoad }) {
+export default function Navigation({ setApiEndpoint }) {
   return (
-    <nav
-      className={'navbar col-xl-8  navbar-expand-lg navbar-light bg-light mb-3'}
-    >
+    <nav className={'navbar navbar-expand-lg navbar-light bg-light mb-3'}>
       <div className={'container-fluid'}>
-        <a className={'navbar-brand'} href="#">
+        <a
+          className={'navbar-brand'}
+          onClick={() => setApiEndpoint('trending')}
+        >
           Ultimate Gif
         </a>
         <button
@@ -26,11 +27,7 @@ export default function Navigation({ setApiEndpoint, setNewLoad, newLoad }) {
         </button>
         <div className={'collapse navbar-collapse'} id="navbarTogglerDemo01">
           <ul className={'navbar-nav me-auto mb-2 mb-lg-0'}>
-            <ButtonRandomGif
-              setApiEndpoint={setApiEndpoint}
-              setNewLoad={setNewLoad}
-              newLoad={newLoad}
-            />
+            <ButtonRandomGif setApiEndpoint={setApiEndpoint} />
             <ButtonTrendGifs setApiEndpoint={setApiEndpoint} />
             <ButtonCategories setApiEndpoint={setApiEndpoint} />
           </ul>
