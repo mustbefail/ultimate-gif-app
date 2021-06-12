@@ -63,7 +63,6 @@ export default function App() {
           setValue={setQuery}
           setApiEndpoint={setApiEndpoint}
         />
-
         {content}
         <Footer />
       </div>

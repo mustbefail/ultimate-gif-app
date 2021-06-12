@@ -4,6 +4,7 @@ import { getGiphyReqUrl } from '../data/giphyApi';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MasonryLayout from './MasonryLayout/MasonryLayout';
 import useApi from '../Hooks/useApi';
+import Spinner from './Spinner';
 
 export default function SearchedGifsContainer({
   apiEndpoint,
@@ -27,7 +28,7 @@ export default function SearchedGifsContainer({
     <InfiniteScroll
       next={() => fetchGifs(apiUrl(currPage * gifPerPage), true)}
       hasMore={!lastPage && !loading}
-      loader={`Loading...`}
+      loader={<Spinner />}
       dataLength={data.length}
       scrollThreshold={1}
       endMessage={

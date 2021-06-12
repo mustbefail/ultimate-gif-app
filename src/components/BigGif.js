@@ -5,20 +5,16 @@ import { backgrounds, getRandomElement } from '../utils';
 
 export default function BigGif({ singleGifID }) {
   const [gifData, setGifData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    loadRandomGif(singleGifID)
-      .then(({ data }) => {
-        setIsLoading(true);
-        const { images, title } = data;
-        const {
-          original: { height, width, url },
-        } = images;
+    loadRandomGif(singleGifID).then(({ data }) => {
+      const { images, title } = data;
+      const {
+        original: { height, width, url },
+      } = images;
 
-        setGifData({ url, height, width, title });
-      })
-      .finally(() => setIsLoading(false));
+      setGifData({ url, height, width, title });
+    });
   }, [singleGifID]);
   const gifStyle = {
     height: gifData.height,
@@ -26,6 +22,7 @@ export default function BigGif({ singleGifID }) {
     borderRadius: 5,
     backgroundColor: getRandomElement(backgrounds),
   };
+
   return (
     <div className={`d-flex align-items-center flex-column`}>
       <div style={gifStyle}>
