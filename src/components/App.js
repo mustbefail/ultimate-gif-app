@@ -37,6 +37,7 @@ export default function App() {
           debouncedQuery={debouncedQuery}
           apiEndpoint={apiEndpoint}
           setApiEndpoint={setApiEndpoint}
+          setSingleGifId={setSingleGifID}
         />
       );
       break;
