@@ -6,10 +6,16 @@ import MasonryLayout from './MasonryLayout/MasonryLayout';
 import useApi from '../Hooks/useApi';
 import Spinner from './Spinner';
 
+/*
+TODO: Добавить historyApi
+TODO:
+ */
+
 export default function SearchedGifsContainer({
   apiEndpoint,
   debouncedQuery,
   setApiEndpoint,
+  setSingleGifId,
 }) {
   const gifPerPage = 25;
 
@@ -41,7 +47,11 @@ export default function SearchedGifsContainer({
         <div className={`text-light text-center`}>{error} </div>
       ) : (
         <MasonryLayout>
-          <GifList gifData={data} setApiEndpoint={setApiEndpoint} />
+          <GifList
+            gifData={data}
+            setApiEndpoint={setApiEndpoint}
+            setSingleGifID={setSingleGifId}
+          />
         </MasonryLayout>
       )}
     </InfiniteScroll>

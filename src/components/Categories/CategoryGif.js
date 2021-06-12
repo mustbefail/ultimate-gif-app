@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import style from './CategoryGif.scss';
 
@@ -15,7 +15,6 @@ export default function CategoryGif({
   const handleLink = (e) => {
     e.preventDefault();
     if (isSubCat) {
-      setIsSubCat(false);
       setSearch(name);
       setApiEndpoint('search');
       return;
