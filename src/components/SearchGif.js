@@ -7,17 +7,21 @@ export default function SearchGif({ value, setValue, setApiEndpoint }) {
     setApiEndpoint('search');
     setValue(myRef.current.value);
   };
+
+  const inputHandle = (event) => {
+    setValue(event.target.value);
+  };
   return (
     <div>
       <form onSubmit={submitHandle}>
         <div className="input-group mb-3">
           <input
             ref={myRef}
-            id={`search`}
+            id="search"
             className={'form-control'}
             type="search"
             value={value}
-            onChange={submitHandle}
+            onChange={inputHandle}
             placeholder="Search gif by name or what ever else"
             aria-label="Search"
             autoFocus={true}
