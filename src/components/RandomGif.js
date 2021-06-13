@@ -25,7 +25,7 @@ export default function RandomGif({ apiEndpoint }) {
       .finally(() => setIsLoading(false));
   }, [loadNew]);
   return (
-    <div className={`d-flex align-items-center flex-column`}>
+    <div className="d-flex align-items-center flex-column">
       <Gif
         height={gifData.height}
         width={gifData.width}
@@ -34,7 +34,7 @@ export default function RandomGif({ apiEndpoint }) {
         isLoading={isLoading}
       />
       <button
-        className={`btn btn-outline-success p-2 mt-2`}
+        className="btn btn-outline-success p-2 mt-2"
         onClick={() => setLoadNew(!loadNew)}
       >
         NEXT
