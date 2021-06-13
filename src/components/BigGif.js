@@ -24,7 +24,7 @@ export default function BigGif({ singleGifID }) {
   };
 
   return (
-    <div className={`d-flex align-items-center flex-column`}>
+    <div className="d-flex align-items-center flex-column">
       <div style={gifStyle}>
         <img src={gifData.url} alt={gifData.title} className={'rounded'} />
       </div>

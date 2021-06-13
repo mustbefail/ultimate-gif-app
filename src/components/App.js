@@ -15,7 +15,7 @@ export default function App() {
   const [apiEndpoint, setApiEndpoint] = useState('trending');
   const [singleGifID, setSingleGifID] = useState('');
   const [query, setQuery] = useState('');
-  const debouncedQuery = useDebounce(query, 500);
+  const debouncedQuery = useDebounce(query, 700);
 
   let content;
   switch (apiEndpoint) {
@@ -56,8 +56,8 @@ export default function App() {
   }
 
   return (
-    <div className={`container d-flex flex-column h-100`}>
-      <div className={`row justify-content-center`}>
+    <div className="container d-flex flex-column h-100">
+      <div className="row justify-content-center">
         <Navigation setApiEndpoint={setApiEndpoint} />
         <SearchGif
           value={query}

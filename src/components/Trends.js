@@ -24,7 +24,7 @@ export default function Trends({
 
   if (error && !loading) {
     return (
-      <div className={`text-light text-center`}>
+      <div className="text-light text-center">
         <h3>Some error</h3>
       </div>
     );
