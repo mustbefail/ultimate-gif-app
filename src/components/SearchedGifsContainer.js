@@ -5,6 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import MasonryLayout from './MasonryLayout/MasonryLayout';
 import useApi from '../Hooks/useApi';
 import Spinner from './Spinner';
+import RandomGif from './RandomGif';
 
 /*
 TODO: Добавить historyApi
@@ -30,6 +31,23 @@ export default function SearchedGifsContainer({
   useEffect(() => {
     fetchGifs(apiUrl(0));
   }, [debouncedQuery]);
+
+  if (data.length === 0 && !loading && !error) {
+    return (
+      <>
+        <h3 className="text-light text-center">
+          We did not find any gifs for your request{' '}
+          <span className="badge">
+            <u>{debouncedQuery}</u>
+          </span>
+          <br />
+          Here's a random GIF
+        </h3>
+        <RandomGif apiEndpoint={'random'} />
+      </>
+    );
+  }
+
   return (
     <InfiniteScroll
       next={() => fetchGifs(apiUrl(currPage * gifPerPage), true)}
@@ -44,7 +62,7 @@ export default function SearchedGifsContainer({
       }
     >
       {error ? (
-        <div className={`text-light text-center`}>{error} </div>
+        <div className="text-light text-center">{error} </div>
       ) : (
         <MasonryLayout>
           <GifList
