@@ -22,12 +22,10 @@ export default function CategoryContainer({
   }, [subCat]);
   return (
     <>
-      <h1 className={`mb-2 text-light text-center`}>Categories</h1>
-      <div
-        className={`d-flex flex-wrap justify-content-center align-content-center text-light`}
-      >
+      <h1 className="mb-2 text-light text-center">Categories</h1>
+      <div className="d-flex flex-wrap justify-content-center align-content-center text-light">
         {isLoading ? (
-          <p className={`text-light`}>Loading...</p>
+          <p className="text-light">Loading...</p>
         ) : (
           <CategoriesGifList
             catData={catData}

@@ -26,7 +26,7 @@ export default function MasonryLayout({ children }) {
   }, [children]);
 
   return (
-    <div className={`d-flex justify-content-center`}>
+    <div className="d-flex justify-content-center">
       <div ref={container} data-testid="MasonryLayoutContainer">
         {children}
       </div>

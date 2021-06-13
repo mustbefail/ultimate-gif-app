@@ -26,9 +26,7 @@ export default function CategoryGif({
     <a onClick={handleLink}>
       <div className={`m-1 card bg-dark text-white ${style.gifContainer}`}>
         <img src={gifUrl} className={'card-img'} alt={name} />
-        <div
-          className={`card-img-overlay d-flex justify-content-center align-items-center ${style.gifOverlay}`}
-        >
+        <div className="card-img-overlay d-flex justify-content-center align-items-center ${style.gifOverlay}">
           <h5 className={'card-title'}>{name.toUpperCase()}</h5>
         </div>
       </div>
