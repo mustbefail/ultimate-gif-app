@@ -1,26 +1,26 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import GifList from './GifList';
 
 import useApi from '../Hooks/useApi';
 import MasonryLayout from './MasonryLayout/MasonryLayout';
-import { getGiphyReqUrl } from '../data/giphyApi';
+import { getGifsCollection } from '../data/giphyApi';
 import Spinner from './Spinner';
 
-export default function Trends({
-  apiEndpoint,
-  setApiEndpoint,
-  setSingleGifID,
-}) {
+export default function Trends() {
+  const location = useLocation();
+  const apiEndpoint = location.pathname.slice(1);
   const gifPerPage = 25;
 
-  const [{ data, error, loading, currPage, lastPage }, fetchGifs] = useApi();
-  const apiUrl = (offset) => getGiphyReqUrl(apiEndpoint, { offset });
+  const [{ data, error, loading, currPage, lastPage }, fetchGifs] = useApi(
+    getGifsCollection,
+  );
 
   useEffect(() => {
-    fetchGifs(apiUrl(0));
-  }, []);
+    fetchGifs(apiEndpoint);
+  }, [getGifsCollection]);
 
   if (error && !loading) {
     return (
@@ -31,19 +31,16 @@ export default function Trends({
   }
   return (
     <InfiniteScroll
-      next={() => fetchGifs(apiUrl(currPage * gifPerPage), true)}
+      next={() =>
+        fetchGifs(apiEndpoint, { offset: currPage * gifPerPage }, true)
+      }
       hasMore={!lastPage && !loading}
       loader={<Spinner />}
       dataLength={data.length}
       scrollThreshold={1}
     >
       <MasonryLayout>
-        <GifList
-          gifData={data}
-          isLoading={loading}
-          setApiEndpoint={setApiEndpoint}
-          setSingleGifID={setSingleGifID}
-        />
+        <GifList gifData={data} isLoading={loading} />
       </MasonryLayout>
     </InfiniteScroll>
   );

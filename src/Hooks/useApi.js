@@ -1,7 +1,7 @@
-import { useReducer } from 'react';
+import { useCallback, useReducer } from 'react';
 import dataFetchReducer from '../reducers/dataFetchReducer';
 
-const useApi = () => {
+export default function useApi(requestFunction) {
   const [state, dispatch] = useReducer(dataFetchReducer, {
     loading: false,
     error: false,
@@ -10,48 +10,40 @@ const useApi = () => {
     lastPage: false,
   });
 
-  const fetchGifs = (url, isMore) => {
-    if (isMore) {
-      dispatch({ type: 'FETCH_MORE_INIT' });
-    } else {
-      dispatch({ type: 'FETCH_INIT' });
-    }
+  const fetchGifs = useCallback(
+    async function (endPoint, params, loadMore = false) {
+      if (loadMore) {
+        dispatch({ type: 'FETCH_MORE_INIT' });
+      } else {
+        dispatch({ type: 'FETCH_INIT' });
+      }
+      try {
+        const response = await requestFunction(endPoint, params);
 
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          return response.json().then((json) => {
-            throw json;
+        if (!response.pagination) {
+          return dispatch({
+            type: 'FETCH_SINGLE',
+            payload: response,
           });
         }
-
-        return response.json();
-      })
-      .then((response) => {
-        if (!response.pagination) {
-          return dispatch({ type: 'FETCH_FAILURE' });
-        }
-
-        if (isMore) {
+        if (loadMore) {
           return dispatch({
             type: 'FETCH_MORE_SUCCESS',
             payload: response.data,
             pagination: response.pagination,
           });
         }
-
         return dispatch({
           type: 'FETCH_SUCCESS',
           payload: response.data,
           pagination: response.pagination,
         });
-      })
-      .catch(() => {
+      } catch {
         dispatch({ type: 'FETCH_FAILURE' });
-      });
-  };
+      }
+    },
+    [requestFunction],
+  );
 
   return [state, fetchGifs];
-};
-
-export default useApi;
+}

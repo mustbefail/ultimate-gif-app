@@ -1,19 +1,12 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-export default function ButtonCategories({ setApiEndpoint }) {
+export default function ButtonCategories() {
   return (
     <li className={'nav-item'}>
-      <a
-        className={'nav-link'}
-        href="#"
-        data-action="categories"
-        onClick={({ target }) => {
-          const { dataset } = target;
-          setApiEndpoint(dataset.action);
-        }}
-      >
+      <NavLink activeClassName="active" className={'nav-link'} to="/categories">
         Categories
-      </a>
+      </NavLink>
     </li>
   );
 }

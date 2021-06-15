@@ -1,6 +1,5 @@
 const dataFetchReducer = (state, action) => {
   const { payload, pagination } = action;
-
   switch (action.type) {
     case 'FETCH_INIT':
       return {
@@ -16,6 +15,13 @@ const dataFetchReducer = (state, action) => {
         loading: true,
         error: false,
         lastPage: false,
+      };
+    case 'FETCH_SINGLE':
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        data: payload,
       };
     case 'FETCH_SUCCESS':
       return {

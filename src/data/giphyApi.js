@@ -18,9 +18,36 @@ export const getGiphyReqUrl = (apiEndpoint, searchParams = {}) => {
   return `${result}?${newSearchParams}`;
 };
 
-export async function loadRandomGif(endPoint, searchParams) {
-  const url = getGiphyReqUrl(endPoint, searchParams);
-  return fetch(url)
-    .then((response) => response.json())
-    .catch(Error);
+export async function getGifsCollection(endPoint, params) {
+  const gifUrl = getGiphyReqUrl(endPoint, params);
+  const response = await fetch(gifUrl);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Could not get gif');
+  }
+
+  return data;
+}
+
+export async function getSingleGif(endPoint) {
+  //for get by id, endpoint must be ID of gif
+  const gifUrl = getGiphyReqUrl(endPoint);
+  const response = await fetch(gifUrl);
+  const { data } = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Could not get gif');
+  }
+
+  const { images, title, id } = data;
+  const { original } = images;
+  const { height, width, url } = original;
+  return {
+    title,
+    height,
+    width,
+    url,
+    id,
+  };
 }

@@ -1,18 +1,11 @@
 import React from 'react';
-export default function ButtonTrendGifs({ setApiEndpoint }) {
+import { NavLink } from 'react-router-dom';
+export default function ButtonTrendGifs() {
   return (
     <li className={'nav-item'}>
-      <a
-        className={'nav-link'}
-        href="#"
-        data-action="trending"
-        onClick={({ target }) => {
-          const { dataset } = target;
-          setApiEndpoint(dataset.action);
-        }}
-      >
+      <NavLink activeClassName="active" className={'nav-link'} to="/trending">
         Trending Gifs
-      </a>
+      </NavLink>
     </li>
   );
 }

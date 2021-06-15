@@ -1,27 +1,36 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-export default function SearchGif({ value, setValue, setApiEndpoint }) {
-  const myRef = useRef();
+export default function SearchGif() {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const history = useHistory();
+  const pushHistory = (search) => {
+    history.push({
+      pathname: '/search',
+      search: `?query=${search}`,
+    });
+  };
+
   const submitHandle = (event) => {
     event.preventDefault();
-    setApiEndpoint('search');
-    setValue(myRef.current.value);
+    pushHistory(searchQuery);
   };
 
-  const inputHandle = (event) => {
-    setValue(event.target.value);
+  const handleInput = (event) => {
+    setSearchQuery(event.target.value);
   };
+
   return (
     <div>
       <form onSubmit={submitHandle}>
         <div className="input-group mb-3">
           <input
-            ref={myRef}
             id="search"
             className={'form-control'}
             type="search"
-            value={value}
-            onChange={inputHandle}
+            value={searchQuery}
+            onChange={handleInput}
             placeholder="Search gif by name or what ever else"
             aria-label="Search"
             autoFocus={true}
