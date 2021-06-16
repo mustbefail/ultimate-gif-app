@@ -1,34 +1,34 @@
 import React from 'react';
 import { backgrounds, getRandomElement } from '../utils';
-
-export default function Gif({
-  title,
-  url,
-  height,
-  width,
-  id,
-  isLoading,
-  setApiEndpoint,
-  setSingleGifID,
-}) {
+import { Link } from 'react-router-dom';
+import s from './Gif.scss';
+export default function Gif({ title, url, height, width, id, fromCollection }) {
   const gifStyle = {
     height,
     width,
     borderRadius: 5,
     backgroundColor: getRandomElement(backgrounds),
   };
-  const linkHandle = (e) => {
-    e.preventDefault();
-    setApiEndpoint('single');
-    setSingleGifID(id);
+
+  const copyToClipboardHandle = () => {
+    navigator.clipboard.writeText(window.location.href);
+    const btn = document.querySelector('.btn-success');
+    setTimeout(() => {
+      btn.textContent = 'Copied!';
+    }, 300);
   };
   return (
     <div style={gifStyle}>
-      {isLoading ? (
-        <h3>Loading...</h3>
-      ) : (
-        <a onClick={linkHandle}>
+      {fromCollection ? (
+        <Link to={`/single?id=${id}`}>
           <img src={url} alt={title} className={'rounded'} />
+        </Link>
+      ) : (
+        <a onClick={copyToClipboardHandle} className={s.container}>
+          <img src={url} alt={title} className={`rounded ${s.image}`} />
+          <div className={s.middle}>
+            <div className={`btn btn-success ${s.text}`}>Copy to clipboard</div>
+          </div>
         </a>
       )}
     </div>

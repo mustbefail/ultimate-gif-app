@@ -1,15 +1,8 @@
 import React from 'react';
 import CategoryGif from './CategoryGif';
 
-export default function CategoriesGifList({
-  catData,
-  setSubCat,
-  setSearch,
-  isSubCat,
-  setIsSubCat,
-  setApiEndpoint,
-}) {
-  return catData.map((cat) => {
+export default function CategoryList({ subCategoryData, fromSubCat }) {
+  return subCategoryData.map((cat) => {
     const { name, gif, name_encoded } = cat;
     const { images, id } = gif;
     const {
@@ -21,11 +14,7 @@ export default function CategoriesGifList({
         name={name}
         gifUrl={url}
         key={id + name}
-        setSubCat={setSubCat}
-        setSearch={setSearch}
-        isSubCat={isSubCat}
-        setIsSubCat={setIsSubCat}
-        setApiEndpoint={setApiEndpoint}
+        fromSubCat={fromSubCat}
       />
     );
   });

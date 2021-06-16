@@ -1,18 +1,11 @@
 import React from 'react';
-export default function ButtonRandomGif({ setApiEndpoint }) {
+import { NavLink } from 'react-router-dom';
+export default function ButtonRandomGif() {
   return (
     <li className={'nav-item'}>
-      <a
-        className={'nav-link'}
-        href="#"
-        data-action="random"
-        onClick={({ target }) => {
-          const { dataset } = target;
-          setApiEndpoint(dataset.action);
-        }}
-      >
+      <NavLink to="/random" activeClassName="active" className={'nav-link'}>
         Random
-      </a>
+      </NavLink>
     </li>
   );
 }
