@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import GifList from './GifList';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import MasonryLayout from './MasonryLayout/MasonryLayout';
+import MasonryLayout from './MasonryLayout';
 import useApi from '../Hooks/useApi';
 import Spinner from './Spinner';
 
-import { getGifsCollection } from '../data/giphyApi';
+import { getGifsCollection } from '../api/giphyApi';
 import SingleGif from './SingleGif';
 
 export default function SearchedGifsContainer() {
@@ -24,6 +24,14 @@ export default function SearchedGifsContainer() {
     fetchGifs(apiEndpoint, { q: search, limit: gifPerPage });
   }, [location.search]);
 
+  if (error && !loading) {
+    return (
+      <div className="text-light text-center">
+        <h3>Some error</h3>
+      </div>
+    );
+  }
+
   if (data.length === 0 && !loading && !error) {
     return (
       <>
@@ -39,33 +47,40 @@ export default function SearchedGifsContainer() {
       </>
     );
   }
-  console.log(data);
   return (
-    <InfiniteScroll
-      next={() =>
-        fetchGifs(
-          apiEndpoint,
-          { q: search, offset: currPage * gifPerPage },
-          true,
-        )
-      }
-      hasMore={!lastPage && !loading}
-      loader={<Spinner />}
-      dataLength={data.length}
-      scrollThreshold={1}
-      endMessage={
-        <p style={{ textAlign: 'center' }}>
-          <b>Yay! You have seen it all</b>
-        </p>
-      }
-    >
-      {error ? (
-        <div className="text-light text-center">{error} </div>
-      ) : (
-        <MasonryLayout>
-          <GifList gifData={data} />
-        </MasonryLayout>
-      )}
-    </InfiniteScroll>
+    <>
+      <h3 className="text-light text-center m-3">
+        GIF on request{' '}
+        <span className="badge">
+          <u>{search}</u>
+        </span>
+      </h3>
+      <InfiniteScroll
+        next={() =>
+          fetchGifs(
+            apiEndpoint,
+            { q: search, offset: currPage * gifPerPage },
+            true,
+          )
+        }
+        hasMore={!lastPage && !loading}
+        loader={<Spinner />}
+        dataLength={data.length}
+        scrollThreshold={1}
+        endMessage={
+          <p style={{ textAlign: 'center' }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
+      >
+        {error ? (
+          <div className="text-light text-center">{error} </div>
+        ) : (
+          <MasonryLayout>
+            <GifList gifData={data} />
+          </MasonryLayout>
+        )}
+      </InfiniteScroll>
+    </>
   );
 }

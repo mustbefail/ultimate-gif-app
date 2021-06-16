@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 export default function CategoryContainer() {
   const [{ data, error, loading }, fetchGifs] = useApi(getGifsCollection);
   const location = useLocation();
+
   const apiEndpoint = location.pathname.slice(1);
 
   useEffect(() => {
@@ -15,9 +16,9 @@ export default function CategoryContainer() {
 
   return (
     <>
-      <h1 className="mb-2 text-light text-center">Categories</h1>
+      <h1 className="mb-2 text-light text-center">Sub categories</h1>
       <div className="d-flex flex-wrap justify-content-center align-content-center text-light">
-        <CategoryList subCategoryData={data} />
+        <CategoryList subCategoryData={data} fromSubCat={true} />
       </div>
     </>
   );

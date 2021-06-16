@@ -15,7 +15,7 @@ export default function Gif({ title, url, height, width, id, fromCollection }) {
     const btn = document.querySelector('.btn-success');
     setTimeout(() => {
       btn.textContent = 'Copied!';
-    }, 500);
+    }, 300);
   };
   return (
     <div style={gifStyle}>

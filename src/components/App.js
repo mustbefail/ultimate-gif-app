@@ -3,11 +3,11 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Navigation from './Navigation';
 import SearchedGifsContainer from './SearchedGifsContainer';
-import CategoryContainer from './Categories';
+import CategoryContainer from './Categories/CategoryContainer';
+import SubCategoryContainer from './Categories/SubCategoryContainer';
 import SearchGif from './SearchGif';
 import Footer from './Footer';
 import Trends from './Trends';
-
 import SingleGif from './SingleGif';
 
 export default function App() {
@@ -28,6 +28,9 @@ export default function App() {
           </Route>
           <Route path="/random">
             <SingleGif />
+          </Route>
+          <Route path="/categories/:subCategory">
+            <SubCategoryContainer />
           </Route>
           <Route path="/categories">
             <CategoryContainer />

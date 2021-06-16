@@ -5,8 +5,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import GifList from './GifList';
 
 import useApi from '../Hooks/useApi';
-import MasonryLayout from './MasonryLayout/MasonryLayout';
-import { getGifsCollection } from '../data/giphyApi';
+import MasonryLayout from './MasonryLayout';
+import { getGifsCollection } from '../api/giphyApi';
 import Spinner from './Spinner';
 
 export default function Trends() {
