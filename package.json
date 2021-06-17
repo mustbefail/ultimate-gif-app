@@ -1,12 +1,13 @@
 {
   "name": "ultimate-gif-app",
+  "homepage": "https://mustbefail.github.io/ultimate-gif-app/",
   "version": "1.0.0",
   "description": "This app allows you to search for gifs using the GIPHY API",
   "main": "index.html",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mustbefail/framework-2021.git"
+    "url": "git+https://github.com/mustbefail/ultimate-gif-app.git"
   },
   "keywords": [
     "gif",
@@ -17,7 +18,6 @@
   "bugs": {
     "url": "https://github.com/mustbefail/ultimate-gif-app/issues"
   },
-  "homepage": "https://github.com/mustbefail/framework-2021#readme",
   "devDependencies": {
     "@babel/core": "^7.13.14",
     "@babel/eslint-parser": "^7.13.14",
