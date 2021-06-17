@@ -29,14 +29,14 @@ export default function App() {
           <Route path="/random">
             <SingleGif />
           </Route>
+          <Route path="/single">
+            <SingleGif />
+          </Route>
           <Route path="/categories/:subCategory">
             <SubCategoryContainer />
           </Route>
           <Route path="/categories">
             <CategoryContainer />
-          </Route>
-          <Route path="/single">
-            <SingleGif />
           </Route>
         </Switch>
         <Footer />
